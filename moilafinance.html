@@ -1,0 +1,64 @@
+<html>
+<body>
+
+<div id="auth"></div>
+
+<script type="text/javascript" src="http://sandbox.api.traceparent.com/0.1-beta/static/rest_framework/js/jquery-1.8.1-min.js"></script>
+
+<!-- <form onSubmit="pre(this); return false;" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top"> -->
+<p>anon <input id="anon" type="checkbox" /></p>
+<textarea id="mess" maxlength="100"></textarea>
+<form id="donation" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+
+    <input type="hidden" name="business" value="camille@traceparent.com" />
+    <input type="hidden" name="cmd" value="_donations" />
+    <input type="hidden" name="item_name" value="Don pour Moi La Finance" />
+    <input type="hidden" name="custom" value="tp_scope=7e148fd2-cd54-11e2-bfd8-00163e84330e&tp_item=donation" />
+    <input type="hidden" name="currency_code" value="EUR" />
+    <input type="text" name="amount" value="15" />
+    <input type="submit" />
+
+</form>
+
+<script type="text/javascript">
+    function tp_authenticated(bool) { $('#auth').text(bool); }
+    $('#donation').on("submit", function() {
+        var custom = $('#donation input[name="custom"]').val();
+        if($('#anon').attr('checked')) custom = custom + '&anon=true';
+        var mess = $('#mess').val();
+        if(mess) custom = custom + '&mess=' + encodeURIComponent(mess);
+        $('#donation input[name="custom"]').val(custom);
+        return true;
+    });
+</script>
+
+<script type="text/javascript" src="http://sandbox.api.traceparent.com/0.1-beta/auth/authenticated/?format=jsonp&callback=tp_authenticated"></script>
+
+<hr />
+
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+
+    <input type="hidden" name="business" value="camille@traceparent.com" />
+    <input type="hidden" name="cmd" value="_xclick" />
+    <input type="hidden" name="item_name" value="VOD Moi La Finance" />
+    <input type="hidden" name="custom" value="tp_scope=7e148fd2-cd54-11e2-bfd8-00163e84330e&tp_item=movie_fr" />
+    <input type="hidden" name="currency_code" value="EUR" />
+    <input type="hidden" name="amount" value="6" />
+    <input type="submit" value ="Film VOD"/>
+
+</form>
+
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+
+    <input type="hidden" name="business" value="camille@traceparent.com" />
+    <input type="hidden" name="cmd" value="_xclick" />
+    <input type="hidden" name="item_name" value="VOD Moi La Finance" />
+    <input type="hidden" name="custom" value="tp_scope=7e148fd2-cd54-11e2-bfd8-00163e84330e&tp_item=movie_en" />
+    <input type="hidden" name="currency_code" value="EUR" />
+    <input type="hidden" name="amount" value="6" />
+    <input type="submit" value ="Movie VOD"/>
+
+</form>
+
+</body>
+</html>
