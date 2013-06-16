@@ -2,9 +2,9 @@
 
 $tp_jocelyne      = 'f09d35de-ce28-11e2-94a7-00163e84330e';
 $tp_seance        = '022f708c-ce29-11e2-94a7-00163e84330e';
-$tp_meta_donation = 'fa2a36d0-ce8f-11e2-bfd8-00163e84330e';
-$tp_meta_vod_fr   = 'c0e9d4a2-ce8f-11e2-bfd8-00163e84330e';
-$tp_meta_vod_en   = '2de22902-ce99-11e2-94a7-00163e84330e';
+$tp_meta_donation = 'a15d90be-d6ce-11e2-aaca-00163e84330e';
+$tp_meta_vod_fr   = 'd7466f66-d6ce-11e2-aaca-00163e84330e';
+$tp_meta_vod_en   = '11d90bf2-d6cf-11e2-b5df-00163e84330e';
 
 if($step == 'complete') {
 
