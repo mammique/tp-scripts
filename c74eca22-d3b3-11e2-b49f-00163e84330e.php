@@ -197,7 +197,7 @@ if($step == 'transaction_already_registered') {
     $amp_mark = '?';
 
 } else {
-    exec('PYTHONPATH='.$tp_virtualenv.'/lib/python2.7/site-packages/:'.
+    exec('PYTHONPATH='.$tp_virtualenv.'/lib/python2.6/site-packages/:'.
          $tp_virtualenv.'/src/traceparent/ '.
          $tp_virtualenv.'/src/traceparent/scripts/auth_user_token.py '.$pp_result['payer_email'],
          $output, $return_var);
