@@ -1,10 +1,10 @@
 <?php
 
-$tp_jocelyne      = 'f09d35de-ce28-11e2-94a7-00163e84330e';
-$tp_seance        = '022f708c-ce29-11e2-94a7-00163e84330e';
-$tp_meta_donation = 'a15d90be-d6ce-11e2-aaca-00163e84330e';
-$tp_meta_vod_fr   = 'd7466f66-d6ce-11e2-aaca-00163e84330e';
-$tp_meta_vod_en   = '11d90bf2-d6cf-11e2-b5df-00163e84330e';
+$tp_jocelyne      = '5b1ca8c8-d751-11e2-b8ee-00163e84330e';
+$tp_seance        = '5b23c3d8-d751-11e2-b8ee-00163e84330e';
+$tp_meta_donation = '02d96c9e-d735-11e2-b49f-00163e84330e';
+$tp_meta_vod_fr   = '5a9b5870-d735-11e2-b49f-00163e84330e';
+$tp_meta_vod_en   = '33ca2230-d735-11e2-b49f-00163e84330e';
 
 if($step == 'complete') {
 
