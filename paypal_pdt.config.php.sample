@@ -1,16 +1,17 @@
 <?php
 
-$tp_virtualenv = '/home/mammique/dev/traceparent';
-$tp_url        = '';
-$tp_auth_token = '';
-$tp_auth_user  = '';
-$tp_unit       = '';
+$tp_virtualenv                = '/home/mammique/dev/traceparent';
+$tp_virtualenv_python_version = '2.6';
+$tp_url                       = '';
+$tp_auth_token                = '';
+$tp_auth_user                 = '';
+$tp_unit                      = '';
 
-$admin_mail    = '';
+$admin_mail                   = '';
 
-$pp_url        = 'https://www.sandbox.paypal.com';
-$pp_auth_token = '';
-$pp_email      = '';
-$pp_tp_uuid    = '';
+$pp_url                       = 'https://www.sandbox.paypal.com';
+$pp_auth_token                = '';
+$pp_email                     = '';
+$pp_tp_uuid                   = '';
 
 ?>
