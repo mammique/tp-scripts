@@ -1,6 +1,12 @@
 <?php
 
-require('paypal_pdt.config.php');
+if(!array_key_exists('cm', $_GET)) exit();
+$query = query_dict(rawurldecode($_GET['cm']));
+
+if(!array_key_exists('tp_scope', $query)) exit(); // FIXME: redirect with message.
+$tp_scope = $query['tp_scope'];
+
+require('paypal_pdt.'.$tp_scope.'.config.php');
 
 /**
  * http://www.paulund.co.uk/parse-url-querystring-into-array-in-php
@@ -32,12 +38,6 @@ function query_dict($qry) {
 }
 
 $step = null;
-
-if(!array_key_exists('cm', $_GET)) exit();
-$query = query_dict(rawurldecode($_GET['cm']));
-
-if(!array_key_exists('tp_scope', $query)) exit();
-$tp_scope = $query['tp_scope'];
 
 preg_match("/[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}/", $tp_scope, $matches);
 if(!$matches) exit();
@@ -163,12 +163,12 @@ function get_or_create_user($email, $name='', $details=false) {
 
 $user = get_or_create_user($pp_result['payer_email'], $pp_result['first_name'].' '.$pp_result['last_name']);
 
-$request = $tp_client->post('value/quantity/create/')
-               ->addPostFields(array('unit'            => $tp_unit,
-                                     'quantity'        => $pp_result['mc_gross'],
-                                     'user'            => $user['uuid'],
-                                     'user_visibility' => 'private',
-                                     'status'          => 'passed'));
+$quantity_dict = array('unit' => $tp_unit,
+                       'quantity'        => $pp_result['mc_gross'],
+                       'user'            => $user['uuid'],
+                       'user_visibility' => 'private',
+                       'status'          => 'passed');
+$request = $tp_client->post('value/quantity/create/')->addPostFields($quantity_dict);
 $quantity = $request->send()->json();
 
 $request = $tp_client->post('metadata/snippet/create/')
@@ -180,9 +180,6 @@ $request = $tp_client->post('metadata/snippet/create/')
                                      'assigned_quantities' => $quantity['uuid'],
                                      'content'             => json_encode($pp_result)));
 $metadata = $request->send()->json();
-
-$request = $tp_client->post("monitor/scope/$tp_scope/update/quantities/add/")
-               ->addPostFields(array('uuid' => $quantity['uuid']))->send();
 
 if(!array_key_exists('mc_fee', $pp_result)) $pp_result['mc_fee'] = 0;
 

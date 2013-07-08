@@ -1,12 +1,15 @@
 <?php
 
-$tp_jocelyne      = '5b1ca8c8-d751-11e2-b8ee-00163e84330e';
-$tp_seance        = '5b23c3d8-d751-11e2-b8ee-00163e84330e';
-$tp_meta_donation = '02d96c9e-d735-11e2-b49f-00163e84330e';
+$tp_jocelyne      = 'f09d35de-ce28-11e2-94a7-00163e84330e';
+$tp_seance        = '022f708c-ce29-11e2-94a7-00163e84330e';
+$tp_meta_donation = 'a15d90be-d6ce-11e2-aaca-00163e84330e';
 $tp_meta_vod_fr   = '5a9b5870-d735-11e2-b49f-00163e84330e';
 $tp_meta_vod_en   = '33ca2230-d735-11e2-b49f-00163e84330e';
 
 if($step == 'complete') {
+
+    $request = $tp_client->post("monitor/scope/$tp_scope/update/quantities/add/")
+                   ->addPostFields(array('uuid' => $quantity['uuid']))->send();
 
     $price          = (float)$pp_result['mc_gross'];
     $partner_share  = $price*0.075;
@@ -87,9 +90,9 @@ if($step == 'complete') {
 
         if(!array_key_exists('anon', $query)) {
 
-            $quantity['user_visibility'] = 'public';
+            $quantity_dict['user_visibility'] = 'public';
             $request = $tp_client->put($quantity['url'].'update/')
-                ->setBody(json_encode($quantity), 'application/json');
+                ->setBody(json_encode($quantity_dict), 'application/json');
             $request->send();
         }
 
