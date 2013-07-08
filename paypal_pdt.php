@@ -6,6 +6,9 @@ $query = query_dict(rawurldecode($_GET['cm']));
 if(!array_key_exists('tp_scope', $query)) exit(); // FIXME: redirect with message.
 $tp_scope = $query['tp_scope'];
 
+preg_match("/[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}/", $tp_scope, $matches);
+if(!$matches) exit();
+
 require('paypal_pdt.'.$tp_scope.'.config.php');
 
 /**
@@ -38,9 +41,6 @@ function query_dict($qry) {
 }
 
 $step = null;
-
-preg_match("/[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}/", $tp_scope, $matches);
-if(!$matches) exit();
 
 require_once 'vendor/autoload.php';
 
