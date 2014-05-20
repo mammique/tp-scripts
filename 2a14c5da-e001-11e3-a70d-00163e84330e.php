@@ -1,6 +1,6 @@
 <?php
 
-$tp_meta_donation = '3be9b874-cd91-11e3-b40e-00163e84330e';
+$tp_meta_donation = '48496fd2-e02a-11e3-a70d-00163e84330e';
 $tp_meta_item     = $tp_meta_donation;
 
 if($step == 'complete') {
