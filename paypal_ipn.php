@@ -73,10 +73,9 @@ $tp_scope = $query['tp_scope'];
 preg_match("/[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}/", $tp_scope, $matches);
 if(!$matches) exit();
 
-define("LOG_FILE", "./log/$tp_scope.log");
-error_log(PHP_EOL . PHP_EOL . "========================================" . PHP_EOL, 3, LOG_FILE);
-
 require('paypal_ipn.'.$tp_scope.'.config.php');
+
+error_log(PHP_EOL . PHP_EOL . "========================================" . PHP_EOL, 3, LOG_FILE);
 
 $req = 'cmd=_notify-validate';
 if(function_exists('get_magic_quotes_gpc')) {
