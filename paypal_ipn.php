@@ -166,7 +166,7 @@ error_log(date('[Y-m-d H:i e] '). "Verified IPN: $req ". PHP_EOL, 3, LOG_FILE);
  *
  */
 
-if($_POST['receiver_email'] != $pp_email) {
+if(strtolower($_POST['receiver_email']) != strtolower($pp_email)) {
 
     $txt = date('[Y-m-d H:i e] '). "Receiver email address mismatch: " . $_POST['receiver_email'];
     error_log($txt . PHP_EOL, 3, LOG_FILE);
